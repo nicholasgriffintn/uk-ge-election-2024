@@ -1,5 +1,6 @@
 CREATE TABLE `bronze_defeated_mps` (
-	`ons_id` text PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`ons_id` text,
 	`constituency_name` text,
 	`region_name` text,
 	`country_name` text,
@@ -18,7 +19,8 @@ CREATE TABLE `bronze_defeated_mps` (
 );
 --> statement-breakpoint
 CREATE TABLE `bronze_elected_mps` (
-	`ons_id` text PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`ons_id` text,
 	`constituency_name` text,
 	`region_name` text,
 	`country_name` text,
@@ -31,7 +33,7 @@ CREATE TABLE `bronze_elected_mps` (
 	`surname` text,
 	`middlenames` text,
 	`mnis_id` text,
-	`Male` text,
-	`Re-elected Member` text,
+	`gender` text,
+	`candidate_type` text,
 	`old_constituency` text
 );

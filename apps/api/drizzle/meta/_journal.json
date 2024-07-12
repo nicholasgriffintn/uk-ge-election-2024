@@ -1,12 +1,26 @@
 {
-  "version": "7",
+  "version": "1",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "6",
-      "when": 1720814826982,
-      "tag": "0000_woozy_beast",
+      "version": "2",
+      "when": 1720815536999,
+      "tag": "00_purple_karen_page",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "2",
+      "when": 1720815536999,
+      "tag": "01_seed_bronze_defeated_mps",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "2",
+      "when": 1720815536999,
+      "tag": "02_seed_bronze_elected_mps",
       "breakpoints": true
     }
   ]

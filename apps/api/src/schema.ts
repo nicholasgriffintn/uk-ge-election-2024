@@ -1,7 +1,8 @@
-import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
 export const bronzeDefeatedMps = sqliteTable('bronze_defeated_mps', {
-  ons_id: text('ons_id').primaryKey(),
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  ons_id: text('ons_id'),
   constituency_name: text('constituency_name'),
   region_name: text('region_name'),
   country_name: text('country_name'),
@@ -20,7 +21,8 @@ export const bronzeDefeatedMps = sqliteTable('bronze_defeated_mps', {
 });
 
 export const bronzeElectedMps = sqliteTable('bronze_elected_mps', {
-  ons_id: text('ons_id').primaryKey(),
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  ons_id: text('ons_id'),
   constituency_name: text('constituency_name'),
   region_name: text('region_name'),
   country_name: text('country_name'),
@@ -33,7 +35,7 @@ export const bronzeElectedMps = sqliteTable('bronze_elected_mps', {
   surname: text('surname'),
   middlenames: text('middlenames'),
   mnis_id: text('mnis_id'),
-  gender: text('Male'),
-  candidate_type: text('Re-elected Member'),
+  gender: text('gender'),
+  candidate_type: text('candidate_type'),
   old_constituency: text('old_constituency'),
 });
