@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "uk-ge-election",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

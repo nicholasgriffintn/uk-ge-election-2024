@@ -1,0 +1,17 @@
+{
+  "name": "@uk-ge-election-2024/api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240712.0",
+    "typescript": "^5.5.3",
+    "wrangler": "^3.64.0"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.7"
+  }
+}
