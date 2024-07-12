@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{host}}/bronze-elected-mps?constituency=Aberdeenshire North and Moray East
+  url: {{host}}/bronze-elected-mps
   body: none
   auth: bearer
 }
 
 params:query {
-  constituency: Aberdeenshire North and Moray East
+  ~constituency: Aberdeenshire North and Moray East
   ~country: Scotland
   ~party: Con
   ~id: 4
