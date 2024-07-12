@@ -4,5 +4,5 @@ compatibility_date = "2023-09-22"
 
 [[d1_databases]]
 binding = "DB"
-database_name = ""
+database_name = "uk-ge-election-2024"
 database_id = ""

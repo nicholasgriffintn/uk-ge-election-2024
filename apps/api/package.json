@@ -4,14 +4,23 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "start": "wrangler dev"
+    "deploy:migrations": "wrangler d1 migrations apply uk-ge-election-2024",
+    "start": "wrangler dev",
+    "test:types": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:up": "drizzle-kit up"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240712.0",
+    "@types/itty-router-extras": "^0.4.3",
+    "better-sqlite3": "^11.1.2",
+    "drizzle-kit": "^0.23.0",
     "typescript": "^5.5.3",
     "wrangler": "^3.64.0"
   },
   "dependencies": {
-    "nanoid": "^5.0.7"
+    "drizzle-orm": "^0.32.0",
+    "itty-router": "^5.0.17",
+    "itty-router-extras": "^0.4.6"
   }
 }
