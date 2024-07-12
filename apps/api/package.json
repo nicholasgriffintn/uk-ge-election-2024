@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy src/index.ts --env production",
     "deploy:migrations": "wrangler d1 migrations apply uk-ge-election-2024 --remote",
     "start": "wrangler dev",
     "test:types": "tsc --noEmit",
