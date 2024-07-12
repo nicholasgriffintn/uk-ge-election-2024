@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "deploy:migrations": "wrangler d1 migrations apply uk-ge-election-2024",
+    "deploy:migrations": "wrangler d1 migrations apply uk-ge-election-2024 --remote",
     "start": "wrangler dev",
     "test:types": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
-    "db:up": "drizzle-kit up"
+    "db:up": "wrangler d1 migrations apply uk-ge-election-2024 --local",
+    "db:export": "wrangler d1 export uk-ge-election-2024 --remote --output data/db.sql"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240712.0",
