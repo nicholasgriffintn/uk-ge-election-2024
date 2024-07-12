@@ -3,11 +3,8 @@ import { drizzle } from 'drizzle-orm/d1';
 import { eq, or } from 'drizzle-orm';
 
 import { bronzeDefeatedMps, bronzeElectedMps } from './schema';
-
-export interface Env {
-  AUTH_TOKEN: string;
-  DB: D1Database;
-}
+import { aiChatHandler } from './routes/ai/chat';
+import type { Env } from './types';
 
 async function getBronzeMpData(
   db: DrizzleD1Database,
@@ -89,6 +86,15 @@ export default {
             return new Response(JSON.stringify(bronzeDefeatedMpsResult), {
               headers: { 'Content-Type': 'application/json' },
             });
+          default:
+            return new Response('Not Found', { status: 404 });
+        }
+      case 'POST':
+        switch (pathname) {
+          case '/ai/chat':
+            const response = await aiChatHandler(request, env, ctx);
+
+            return new Response(JSON.stringify(response));
           default:
             return new Response('Not Found', { status: 404 });
         }
