@@ -17,19 +17,10 @@ importers:
       drizzle-orm:
         specifier: ^0.32.0
         version: 0.32.0(@cloudflare/workers-types@4.20240712.0)(better-sqlite3@11.1.2)
-      itty-router:
-        specifier: ^5.0.17
-        version: 5.0.17
-      itty-router-extras:
-        specifier: ^0.4.6
-        version: 0.4.6
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20240712.0
         version: 4.20240712.0
-      '@types/itty-router-extras':
-        specifier: ^0.4.3
-        version: 0.4.3
       better-sqlite3:
         specifier: ^11.1.2
         version: 11.1.2
@@ -518,9 +509,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@types/itty-router-extras@0.4.3':
-    resolution: {integrity: sha512-mBLJnci8IQRqWCURrBW45XVtXtwuTig0DWKBZQlLB36yOZoxkNDf8pSsHW/gOFqyqtO21zcSfgTjrA6/bKJwEA==}
-
   '@types/node-forge@1.3.11':
     resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
 
@@ -817,15 +805,6 @@ packages:
   is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
-
-  itty-router-extras@0.4.6:
-    resolution: {integrity: sha512-6r7HQBkFMPSJfcKksrKC7avEQnPCSSEvoz6PAAZMNhz8hthYu1pzedXDrvTFDWXJosfuaittzoNciWHO/TxMaw==}
-
-  itty-router@2.6.6:
-    resolution: {integrity: sha512-hIPHtXGymCX7Lzb2I4G6JgZFE4QEEQwst9GORK7sMYUpJvLfy4yZJr95r04e8DzoAnj6HcxM2m4TbK+juu+18g==}
-
-  itty-router@5.0.17:
-    resolution: {integrity: sha512-ZHnPI0OOyTTLuNp2FdciejYaK4Wl3ZV3O0yEm8njOGggh/k/ek3BL7X2I5YsCOfc5vLhIJgj3Z4pUtLs6k9Ucg==}
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -1357,10 +1336,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@types/itty-router-extras@0.4.3':
-    dependencies:
-      itty-router: 2.6.6
-
   '@types/node-forge@1.3.11':
     dependencies:
       '@types/node': 20.14.10
@@ -1622,12 +1597,6 @@ snapshots:
       is-extglob: 2.1.1
 
   is-number@7.0.0: {}
-
-  itty-router-extras@0.4.6: {}
-
-  itty-router@2.6.6: {}
-
-  itty-router@5.0.17: {}
 
   magic-string@0.25.9:
     dependencies:

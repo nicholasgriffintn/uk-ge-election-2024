@@ -1,0 +1,23 @@
+meta {
+  name: Bronze Elected MPs
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{host}}/bronze-elected-mps?constituency=Aberdeenshire North and Moray East
+  body: none
+  auth: bearer
+}
+
+params:query {
+  constituency: Aberdeenshire North and Moray East
+  ~country: Scotland
+  ~party: Con
+  ~id: 4
+  ~region: East Midlands
+}
+
+auth:bearer {
+  token: {{auth_token}}
+}

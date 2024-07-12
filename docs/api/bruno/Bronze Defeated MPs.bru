@@ -1,0 +1,23 @@
+meta {
+  name: Bronze Defeated MPs
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{host}}/bronze-defeated-mps
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~constituency: Aberdeenshire North and Moray East
+  ~country: Scotland
+  ~party: Con
+  ~id: 4
+  ~region: East Midlands
+}
+
+auth:bearer {
+  token: {{auth_token}}
+}
