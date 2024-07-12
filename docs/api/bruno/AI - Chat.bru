@@ -4,12 +4,20 @@ meta {
   seq: 5
 }
 
-get {
-  url: {{host}}
-  body: none
+post {
+  url: {{host}}/ai/chat
+  body: json
   auth: bearer
 }
 
 auth:bearer {
   token: {{auth_token}}
+}
+
+body:json {
+  {
+    "messages": [
+      "What is an LLM?"
+    ]
+  }
 }

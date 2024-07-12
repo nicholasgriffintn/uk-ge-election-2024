@@ -63,25 +63,25 @@ export async function aiChatHandler(
   });
 
   const aiKnowledgeVectorstore = new CloudflareVectorizeStore(embeddings, {
-    index: cloudflareBindings.MPS_KNOWLEDGE_VECTORIZE_INDEX,
+    index: cloudflareBindings.VECTORIZE,
   });
 
   const cloudflareModel = new ChatCloudflareWorkersAI({
     model: '@cf/meta/llama-2-7b-chat-fp16',
-    cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
-    cloudflareApiToken: process.env.CLOUDFLARE_WORKERSAI_API_TOKEN,
+    cloudflareAccountId: cloudflareBindings.CLOUDFLARE_ACCOUNT_ID,
+    cloudflareApiToken: cloudflareBindings.CLOUDFLARE_WORKERSAI_API_TOKEN,
   });
 
-  // Set process.env.BEDROCK_AWS_ACCESS_KEY_ID to use a larger model for more reasoning-intensive,
+  // Set BEDROCK_AWS_ACCESS_KEY_ID to use a larger model for more reasoning-intensive,
   // low-token tasks like routing and question rephrasing
   const bedrockModel =
-    process.env.BEDROCK_AWS_ACCESS_KEY_ID !== undefined
+    cloudflareBindings.BEDROCK_AWS_ACCESS_KEY_ID !== undefined
       ? new BedrockChat({
           model: 'anthropic.claude-v2',
-          region: process.env.BEDROCK_AWS_REGION,
+          region: cloudflareBindings.BEDROCK_AWS_REGION,
           credentials: {
-            accessKeyId: process.env.BEDROCK_AWS_ACCESS_KEY_ID!,
-            secretAccessKey: process.env.BEDROCK_AWS_SECRET_ACCESS_KEY!,
+            accessKeyId: cloudflareBindings.BEDROCK_AWS_ACCESS_KEY_ID!,
+            secretAccessKey: cloudflareBindings.BEDROCK_AWS_SECRET_ACCESS_KEY!,
           },
         })
       : undefined;

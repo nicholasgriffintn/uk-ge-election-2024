@@ -7,6 +7,7 @@ import {
   CloudflareWorkersAIEmbeddings,
 } from '@langchain/cloudflare';
 
+import { Env } from '../../types';
 import { BLOG_POST_TEXT } from './data/blog';
 
 const upsertDocsToVectorstore = async (
@@ -37,15 +38,20 @@ const upsertDocsToVectorstore = async (
   return result;
 };
 
-export async function aiIngestHandler(event: any) {
-  if (process.env.ENVIRONMENT !== 'local') {
-    throw new Error(
-      `You must run the ingest script with process.env.ENVIRONMENT set to "local".`
-    );
-  }
-  const cloudflareBindings = event.context?.cloudflare?.env;
+export async function aiIngestHandler(
+  request: Request,
+  env: Env,
+  ctx: ExecutionContext
+) {
+  const cloudflareBindings = env;
   if (!cloudflareBindings) {
     throw new Error('No Cloudflare bindings found.');
+  }
+
+  if (cloudflareBindings.ENVIRONMENT !== 'local') {
+    throw new Error(
+      `You must run the ingest script with cloudflareBindings.ENVIRONMENT set to "local".`
+    );
   }
   const embeddings = new CloudflareWorkersAIEmbeddings({
     binding: cloudflareBindings.AI,
@@ -64,33 +70,10 @@ export async function aiIngestHandler(event: any) {
   });
   const splitAiAgentDocs = await splitter.splitDocuments([aiAgentDocument]);
   const aiKnowledgeVectorstore = new CloudflareVectorizeStore(embeddings, {
-    index: cloudflareBindings.AI_KNOWLEDGE_VECTORIZE_INDEX,
+    index: cloudflareBindings.VECTORIZE,
   });
 
   await upsertDocsToVectorstore(aiKnowledgeVectorstore, splitAiAgentDocs);
-
-  // Ingest content about Cloudflare
-  // Need to polyfill a method that Cloudflare Workers is missing for the PDF loader
-  globalThis.setImmediate = ((fn: () => {}) => setTimeout(fn, 0)) as any;
-  const cloudflareFetchResponse = await fetch(
-    'https://www.cloudflare.com/resources/assets/slt3lc6tev37/3HWObubm6fybC0FWUdFYAJ/5d5e3b0a4d9c5a7619984ed6076f01fe/Cloudflare_for_Campaigns_Security_Guide.pdf'
-  );
-  const cloudflarePdfBlob = (await cloudflareFetchResponse.blob()) as Blob;
-  const pdfLoader = new WebPDFLoader(cloudflarePdfBlob, {
-    parsedItemSeparator: '',
-  });
-  const cloudflareDocs = await pdfLoader.load();
-  const splitCloudflareDocs = await splitter.splitDocuments(cloudflareDocs);
-  const cloudflareKnowledgeVectorstore = new CloudflareVectorizeStore(
-    embeddings,
-    {
-      index: cloudflareBindings.CLOUDFLARE_KNOWLEDGE_VECTORIZE_INDEX,
-    }
-  );
-  await upsertDocsToVectorstore(
-    cloudflareKnowledgeVectorstore,
-    splitCloudflareDocs
-  );
 
   return 'Ingest complete!';
 }

@@ -1,0 +1,15 @@
+meta {
+  name: AI - Ingest
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{host}}/ai/ingest
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{auth_token}}
+}

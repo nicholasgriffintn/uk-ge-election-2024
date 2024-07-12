@@ -4,6 +4,7 @@ import { eq, or } from 'drizzle-orm';
 
 import { bronzeDefeatedMps, bronzeElectedMps } from './schema';
 import { aiChatHandler } from './routes/ai/chat';
+import { aiIngestHandler } from './routes/ai/ingest';
 import type { Env } from './types';
 
 async function getBronzeMpData(
@@ -95,6 +96,10 @@ export default {
             const response = await aiChatHandler(request, env, ctx);
 
             return new Response(JSON.stringify(response));
+          case '/ai/ingest':
+            const ingestResponse = await aiIngestHandler(request, env, ctx);
+
+            return new Response(JSON.stringify(ingestResponse));
           default:
             return new Response('Not Found', { status: 404 });
         }
